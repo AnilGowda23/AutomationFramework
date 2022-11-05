@@ -15,7 +15,8 @@ class BaseTest:
         p_file.load(open('../config.properties'))
         url = p_file['url']
         browser = p_file['browser']
-        implicit_timeout = p_file['implictTimeout']
+        implicit_timeout = p_file['implicitTimeout']
+        explicit_timeout = p_file['explicitTimeout']
         use_grid = p_file['grid']
         if use_grid == 'no':
             if browser == 'chrome':
@@ -28,6 +29,6 @@ class BaseTest:
         self.driver.get(url)
         self.driver.maximize_window()
         self.driver.implicitly_wait(implicit_timeout)
-        self.wait = WebDriverWait(self.driver, 10)
+        self.wait = WebDriverWait(self.driver, explicit_timeout)
         yield
         self.driver.quit()

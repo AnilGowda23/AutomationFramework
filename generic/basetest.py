@@ -12,7 +12,11 @@ class BaseTest:
     @pytest.fixture(autouse=True)
     def pre_condition(self):
         p_file = Properties()
-        p_file.load(open('../config.properties'))
+        try:
+            p_file.load(open('../config.properties'))
+        except:
+            p_file.load(open('../config.properties'))
+
         url = p_file['url']
         browser = p_file['browser']
         implicit_timeout = p_file['implicitTimeout']

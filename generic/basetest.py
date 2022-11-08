@@ -15,7 +15,7 @@ class BaseTest:
         try:
             p_file.load(open('../config.properties'))
         except:
-            p_file.load(open('../config.properties'))
+            p_file.load(open('config.properties'))
 
         url = p_file['url']
         browser = p_file['browser']

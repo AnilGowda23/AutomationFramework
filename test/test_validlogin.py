@@ -11,8 +11,8 @@ class TestLoginPage(BaseTest):
 
     @pytest.mark.run(order=1)
     def test_valid_login(self):
-        user_name = Excel.get_cellvalue('./data/input.xlsx', 'LoginData', 2, 1)
-        password = Excel.get_cellvalue('./data/input.xlsx', 'LoginData', 2, 2)
+        user_name = Excel.get_cellvalue('../data/input.xlsx', 'LoginData', 2, 1)
+        password = Excel.get_cellvalue('../data/input.xlsx', 'LoginData', 2, 2)
         loginpage = LoginPage(self.driver)
         loginpage.set_username(user_name)
         loginpage.set_password(password)

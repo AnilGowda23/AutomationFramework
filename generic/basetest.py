@@ -31,10 +31,14 @@ class BaseTest:
         else:
             if browser == 'chrome':
                 browser_options = ChromeOptions()
-                self.driver = webdriver.Remote('http://10.100.0.77:4444', options=browser_options)
+                self.driver = webdriver.Remote('https://oauth-anilkumargowda2404-9bcc3:2ccb2fee-bcc5-4d74-91d3'
+                                               '-196396136283@ondemand.us-west-1.saucelabs.com:443/wd/hub',
+                                               options=browser_options)
             else:
                 browser_options = FirefoxOptions()
-                self.driver = webdriver.Remote('http://10.100.0.77:4444', options=browser_options)
+                self.driver = webdriver.Remote('https://oauth-anilkumargowda2404-9bcc3:2ccb2fee-bcc5-4d74-91d3'
+                                               '-196396136283@ondemand.us-west-1.saucelabs.com:443/wd/hub',
+                                               options=browser_options)
 
         self.driver.get(url)
         self.driver.maximize_window()

@@ -4,7 +4,8 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from pyjavaproperties import Properties
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver import ChromeOptions
+from selenium.webdriver import FirefoxOptions
 from selenium.webdriver.support.wait import WebDriverWait
 
 
@@ -21,14 +22,19 @@ class BaseTest:
         browser = p_file['browser']
         implicit_timeout = p_file['implicitTimeout']
         explicit_timeout = p_file['explicitTimeout']
-        use_grid = p_file['grid']
+        use_grid = p_file['usegrid']
         if use_grid == 'no':
             if browser == 'chrome':
-                # options = ChromeOptions()
                 self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-                # webdriver.Remotes()
             else:
                 self.driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()))
+        else:
+            if browser == 'chrome':
+                browser_options = ChromeOptions()
+                self.driver = webdriver.Remote('http://10.100.0.77:4444', options=browser_options)
+            else:
+                browser_options = FirefoxOptions()
+                self.driver = webdriver.Remote('http://10.100.0.77:4444', options=browser_options)
 
         self.driver.get(url)
         self.driver.maximize_window()
